@@ -47,6 +47,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Extensions" />
@@ -89,6 +90,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mocks\MockContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
@@ -99,6 +101,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\DripStore.Core\DripStore.Core.csproj">
+      <Project>{6A8A178C-4DCB-4CD2-A06A-30BA0CFD8696}</Project>
+      <Name>DripStore.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\DripStore.UI\DripStore.UI.csproj">
       <Project>{41D0366A-C54E-435F-A2B5-CB9CD1C7E6FB}</Project>
       <Name>DripStore.UI</Name>

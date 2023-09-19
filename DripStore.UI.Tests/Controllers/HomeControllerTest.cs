@@ -1,4 +1,6 @@
-﻿using DripStore.UI;
+﻿using DripStore.Core.Contracts;
+using DripStore.Core.Models;
+using DripStore.UI;
 using DripStore.UI.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -13,42 +15,20 @@ namespace DripStore.UI.Tests.Controllers
     public class HomeControllerTest
     {
         [TestMethod]
-        public void Index()
+        public void IndexReturnProduct()
         {
-            // Arrange
-            HomeController controller = new HomeController();
+            IRepository<Product> productContext = new Mocks.MockContext<Product>();
+            IRepository<ProductCategory> categoryContext = new Mocks.MockContext<ProductCategory>();
+            HomeController controller = new HomeController(productContext,categoryContext);
+            productContext.Insert(new Product());
 
-            // Act
-            ViewResult result = controller.Index() as ViewResult;
-
-            // Assert
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void About()
-        {
-            // Arrange
-            HomeController controller = new HomeController();
-
-            // Act
-            ViewResult result = controller.About() as ViewResult;
-
-            // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
-        }
-
-        [TestMethod]
-        public void Contact()
-        {
-            // Arrange
-            HomeController controller = new HomeController();
-
-            // Act
-            ViewResult result = controller.Contact() as ViewResult;
-
-            // Assert
-            Assert.IsNotNull(result);
+            var result = controller.Index() as ViewResult;
+            var veiwModel = (ProductListVM)result.ViewData.Model;
         }
     }
-}
+    
+    
+        
+        
+     
+}       
